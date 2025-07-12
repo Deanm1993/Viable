@@ -143,15 +143,17 @@ export default function JobDetailsStep({ data, onUpdate }: JobDetailsStepProps) 
     })
     
     setWarnings(newWarnings)
-    
-    // Update form data with calculations
-    if (pavingTonnage > 0) {
+  }, [data.job_details.measurements])
+
+  // Update parent component when calculations change
+  useEffect(() => {
+    if (calculations.tonnageRequired > 0) {
       onUpdate({
-        tonnage_required: pavingTonnage,
-        truck_loads: truckLoads
+        tonnage_required: calculations.tonnageRequired,
+        truck_loads: calculations.truckLoads
       })
     }
-  }, [data.job_details.measurements, onUpdate])
+  }, [calculations.tonnageRequired, calculations.truckLoads, onUpdate])
 
   const selectedJobType = jobTypes.find(jt => jt.value === data.job_details.job_type)
 
