@@ -136,6 +136,7 @@ export default function JobDetailsStep({ data, onUpdate }: JobDetailsStepProps) 
     
     const truckLoads = calculateTruckLoads(pavingTonnage)
     
+    // Update local state
     setCalculations({
       tonnageRequired: pavingTonnage,
       truckLoads: truckLoads,
@@ -143,17 +144,15 @@ export default function JobDetailsStep({ data, onUpdate }: JobDetailsStepProps) 
     })
     
     setWarnings(newWarnings)
-  }, [data.job_details.measurements])
-
-  // Update parent component when calculations change
-  useEffect(() => {
-    if (calculations.tonnageRequired > 0) {
+    
+    // Update parent component directly here - only when measurements actually change
+    if (pavingTonnage > 0) {
       onUpdate({
-        tonnage_required: calculations.tonnageRequired,
-        truck_loads: calculations.truckLoads
+        tonnage_required: pavingTonnage,
+        truck_loads: truckLoads
       })
     }
-  }, [calculations.tonnageRequired, calculations.truckLoads, onUpdate])
+  }, [data.job_details.measurements])
 
   const selectedJobType = jobTypes.find(jt => jt.value === data.job_details.job_type)
 
