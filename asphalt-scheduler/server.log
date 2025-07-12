@@ -1,0 +1,11 @@
+nohup: ignoring input
+   ▲ Next.js 15.3.5
+   - Local:        http://localhost:3000
+   - Network:      http://0.0.0.0:3000
+
+ ✓ Starting...
+ ✓ Ready in 1268ms
+ ○ Compiling / ...
+[Error: Cannot apply unknown utility class `border-border`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive]
+ ✓ Compiled / in 3.5s (843 modules)
+ GET / 200 in 3890ms
