@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react'
@@ -85,12 +85,12 @@ export default function NewJobScope() {
 
   const progress = ((currentStep + 1) / steps.length) * 100
 
-  const updateFormData = (stepData: Partial<JobScopingFormData>) => {
+  const updateFormData = useCallback((stepData: Partial<JobScopingFormData>) => {
     setFormData(prev => ({
       ...prev,
       ...stepData
     }))
-  }
+  }, [])
 
   const markStepComplete = (stepIndex: number) => {
     setCompletedSteps(prev => new Set([...prev, stepIndex]))
